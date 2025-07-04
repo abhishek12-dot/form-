@@ -7,15 +7,16 @@ form.addEventListener('submit', (e) => {
 
     fetch(scriptURL, {
         method: 'POST',
+         headers :{
+            'content-type':'application/json'
+        },
         body: JSON.stringify({
             name:form.name.value,
             email:form.email.value,
             message:form.message.value
         }),
-        headers :{
-            'content-type':'application/json'
-        }
+
     })
-        .then(response=>alert("form submission successfully!"))
-        .catch(error=>alert("error submitting form:"+ error));
+        .then(response=>{alert("form submission successfully!"); form.reset();})
+        .catch(error=>{alert("error submitting form:"+ error);});
 });
