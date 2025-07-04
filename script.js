@@ -7,15 +7,15 @@ form.addEventListener('submit', (e) => {
 
     fetch(scriptURL, {
         method: 'POST',
-        body: new URLSearchParams(new FormData(form))
+        body: JSON.stringify({
+            name:form.name.value,
+            email:form.email.value,
+            message:form.message.value
+        }),
+        headers :{
+            'content-type':'application/json'
+        }
     })
-        .then(response => response.json())
-        .then(result => {
-            alert("Form submitted successfully!");
-            form.reset();
-        })
-        .catch(error => {
-            console.error('Error!', error);
-            alert("An error occurred while submitting the form.");
-        });
+        .then(response=>alert("form submission successfully!"))
+        .catch(error=>alert("error submitting form:"+ error));
 });
